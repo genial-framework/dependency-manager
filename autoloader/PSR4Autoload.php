@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 /**
- * PSR4 Autoloader.
+ * Autoloader.
  *
  * @author  Autoloader Contributors <https://github.com/genial-framework/autoloader/graphs/contributors>.
  *
@@ -9,11 +9,29 @@ declare(strict_types=1);
  * @license <https://github.com/genial-framework/autoloader/master/LICENSE> MIT License.
  */
 
-namespace PSR_4_Autoloader
-
 /**
- * AutoloaderInterface.
+ * PSRAutoloader.
  */
-class Autoloader implements AutoloaderInterface
+class PSRAutoloader
 {
+
+    /**
+     * Does the class use namespaced prefix?
+     *
+     * @param string $prefix The namespaced prefix
+     * @param string $class  The class name.
+     *
+     * @return bool Return TRUE if the class uses the namespaced prefix and
+     *                     FALSE if it does not.
+     */
+    public function namespacedPrefix(
+        string $prefix,
+        string $class
+    ): bool {
+        $len = \strlen($prefix);
+        if (\strncmp($prefix, $class, $len) !== 0) {
+            return \false;
+        }
+        return \true;
+    }
 }
